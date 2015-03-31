@@ -237,7 +237,7 @@ class NRInfoViewController: UIViewController, NRInfoManagerDelegate, UITableView
                 
             } else if indexPath.row == 1 {
                 
-                let wikipediaURL: NSURL! = NSURL(string: info.tld!.valueForKey("wikipedia_url") as String)
+                let wikipediaURL: NSURL! = NSURL(string: info.tld!.valueForKey("wikipedia_url") as! String)
                 let wikipediaViewController: SVWebViewController = SVWebViewController(URL: wikipediaURL)
                 wikipediaViewController.title = "TLD Wikipedia Article"
                 wikipediaViewController.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
@@ -261,7 +261,7 @@ class NRInfoViewController: UIViewController, NRInfoManagerDelegate, UITableView
             
             } else {
                 
-                let registrarURL: NSURL! = NSURL(string: info.registrars!.objectAtIndex(indexPath.row).valueForKey("register_url") as String)
+                let registrarURL: NSURL! = NSURL(string: info.registrars!.objectAtIndex(indexPath.row).valueForKey("register_url") as! String)
                 let registrarViewController: SVWebViewController = SVWebViewController(URL: registrarURL)
                 registrarViewController.title = info.registrars!.objectAtIndex(indexPath.row).valueForKey("name") as? String
                 registrarViewController.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
@@ -303,12 +303,12 @@ class NRInfoViewController: UIViewController, NRInfoManagerDelegate, UITableView
             cell = NRInfoViewRegistrarCell(style: .Default, reuseIdentifier: "NRInfoViewRegistrarCell")
         }
         
-        cell?.textLabel?.text = NSString(format: "View %d ", info.registrars!.count - 4) + "Others"
+        cell?.textLabel?.text = NSString(format: "View %d Others", info.registrars!.count - 4) as String
         cell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         
         if indexPath.row < 4 {
-            cell?.textLabel?.text = info.registrars!.objectAtIndex(indexPath.row).valueForKey("name") as NSString
+            cell?.textLabel?.text = info.registrars!.objectAtIndex(indexPath.row).valueForKey("name") as? String
         }
         
         return cell!

@@ -15,7 +15,7 @@ class NRRegistrarViewController: UITableViewController {
     let registrarsTableViewCellIdentifier: String = "NRInfoViewRegistrarCell"
     
     init(registrars: NSArray!) {
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: UITableViewStyle.Plain)
         
         self.registrars = registrars
     }
@@ -72,7 +72,7 @@ class NRRegistrarViewController: UITableViewController {
         }
         
         cell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        cell?.textLabel?.text = registrars!.objectAtIndex(indexPath.row).valueForKey("name") as NSString
+        cell?.textLabel?.text = registrars!.objectAtIndex(indexPath.row).valueForKey("name") as? String
         
         return cell
         
